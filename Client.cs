@@ -12,12 +12,13 @@ public class Client
         client.Send([0], new IPEndPoint(IPAddress.Parse(firstAddress), firstPort));
         client.Send([0], new IPEndPoint(IPAddress.Parse(secondAddress), secondPort));
 
+        Console.WriteLine("REMOTE ADDRESS\t\t\tRESPONSE");
         while (true)
         {
             var endpoint = new IPEndPoint(IPAddress.Any, 0);
             var bytes = client.Receive(ref endpoint);
             var payload = Encoding.ASCII.GetString(bytes);
-            Console.WriteLine(payload);
+            Console.WriteLine($"{endpoint.Address.ToString()}:{endpoint.Port}\t\t\"{payload}\"");
         }
     }
 }

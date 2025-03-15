@@ -14,7 +14,7 @@ public class Server
         {
             var endpoint = new IPEndPoint(IPAddress.Any, 0);
             _ = udpClient.Receive(ref endpoint);
-            var payload = $"I see you, {endpoint.Address.ToString()}:{endpoint.Port}";
+            var payload = $"Hello! You are {endpoint.Address.ToString()}:{endpoint.Port}";
             udpClient.Send(Encoding.ASCII.GetBytes(payload), endpoint);
         }
     }
